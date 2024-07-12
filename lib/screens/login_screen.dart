@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:amazon_cognito_identity_dart_2/cognito.dart';
 
-final userPool = CognitoUserPool(
-  'eu-central-',
-  '',
-);
+const userPoolId = String.fromEnvironment('USERPOOL_ID');
+const clientId = String.fromEnvironment('CLIENT_ID');
+
+final userPool = CognitoUserPool(userPoolId, clientId);
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key, required this.setToken});
@@ -45,6 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset("assets/boy-and-girl-holding-coffee.png"),
             Form(
               key: _formKey,
               child: Column(
@@ -77,13 +78,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     onSaved: (val) => _password = val!,
                   ),
                   const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: _handleSignIn,
-                    // style: ButtonStyle(
-                    //   backgroundColor: Theme.of(context).colorScheme.error,
-                    // ),
-                    child: const Text('Submit'),
-                  ),
+                  Container(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: _handleSignIn,
+                      child: const Text('Submit'),
+                    ),
+                  )
                 ],
               ),
             ),

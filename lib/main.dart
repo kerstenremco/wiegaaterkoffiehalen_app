@@ -20,18 +20,32 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primaryColor: const Color.fromARGB(255, 224, 122, 95),
+        colorScheme: const ColorScheme(
+          primary: Color.fromARGB(255, 224, 122, 95),
+          secondary: Color.fromARGB(255, 224, 122, 95),
+          brightness: Brightness.light,
+          onSecondary: Colors.white,
+          onPrimary: Colors.white,
+          onError: Colors.white,
+          error: Colors.red,
+          surface: Colors.white,
+          onSurface: Colors.black,
+        ),
         inputDecorationTheme: const InputDecorationTheme(
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Color.fromARGB(255, 224, 122, 95),
+            focusColor: Color.fromARGB(255, 113, 133, 122),
+            focusedBorder: InputBorder.none,
+            border: InputBorder.none,
+            fillColor: Color.fromARGB(255, 244, 244, 245),
+            filled: true),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 224, 122, 95),
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
             ),
           ),
         ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-          backgroundColor: const Color.fromARGB(255, 224, 122, 95),
-        )),
       ),
       home: _token != null
           ? DashboardScreen(token: _token!)
